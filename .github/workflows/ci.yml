@@ -21,6 +21,15 @@ jobs:
         pip install -r requirements.txt
         pip install flake8 pytest
 
+    - name: Set environment variables
+      env:
+        DB_HOST: 127.0.0.1
+        DB_PORT: 3306
+        DB_USER: dockerapi
+        DB_PASSWORD: Docker123!
+        DB_NAME: cardiorisk_api
+      run: echo "Environment variables set for CI"
+
     - name: Set PYTHONPATH
       run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)/src" >> $GITHUB_ENV
 
