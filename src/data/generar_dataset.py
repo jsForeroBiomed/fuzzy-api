@@ -1,4 +1,3 @@
-import numpy as np
 import pandas as pd
 from fuzzy_model import predecir
 
@@ -11,7 +10,8 @@ def generar_dataset():
                 for edad in range(25, 81, 10):
                     for actividad in range(0, 16, 5):
                         for cigarros in [0, 5, 20, 40]:
-                            entrada = [presion, colesterol, imc, edad, actividad, cigarros]
+                            entrada = [
+                                presion, colesterol, imc, edad, actividad, cigarros]
                             salida = predecir(*entrada)
                             if isinstance(salida, (float, int)):
                                 X.append(entrada)
@@ -26,4 +26,3 @@ if __name__ == "__main__":
     df = generar_dataset()
     df.to_csv("dataset_fuzzy.csv", index=False)
     print(f"{len(df)} registros generados y guardados en 'dataset_fuzzy.csv'")
-

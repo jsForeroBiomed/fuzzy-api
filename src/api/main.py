@@ -1,11 +1,11 @@
 from fastapi import FastAPI
+from dotenv import load_dotenv
 from pydantic import BaseModel
 import joblib
 import numpy as np
-import sys
-import  os
 from src.api.database import get_connection
 
+# load_dotenv()
 
 app = FastAPI()
 
@@ -25,7 +25,9 @@ def check_db():
         conn = get_connection()
         if conn:
             conn.close()
-            return {"status": "success", "message": "Connected to the database successfully."}
+            return {
+                "status": "success",
+                "message": "Connected to the database successfully."}
     except Exception as e:
         return {"status": "error", "message": f"Exception: {str(e)}"}
 
@@ -41,14 +43,13 @@ def predict(data: DatosEntrada) -> dict:
         data.actividad_fisica,
         data.cigarrillos_por_dia
 
-        ]])
+    ]])
 
     modelo = joblib.load("modelo_tree_tuneado.pkl")
     resultado = modelo.predict(entrada)[0]
-    
+
     conn = get_connection()
     cursor = conn.cursor()
-
 
     query = """
         INSERT INTO predicciones (
@@ -80,4 +81,4 @@ def predict(data: DatosEntrada) -> dict:
     return {
         "input": data.dict(),
         "riesgo_cardiovascular": resultado
-        }
+    }

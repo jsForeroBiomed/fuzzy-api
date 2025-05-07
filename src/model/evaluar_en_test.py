@@ -23,4 +23,3 @@ if __name__ == "__main__":
     X_test, y_test = cargar_test()
     pred = modelo.predict(X_test)
     imprimir_metricas(y_test, pred)
-

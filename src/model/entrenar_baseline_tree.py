@@ -59,4 +59,3 @@ if __name__ == "__main__":
     modelo = entrenar_y_validar(X_train, y_train, X_val, y_val)
     mostrar_reglas(modelo, X_train.columns.tolist())
     guardar_modelo(modelo)
-

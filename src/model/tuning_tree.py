@@ -36,7 +36,12 @@ if __name__ == "__main__":
     }
 
     modelo = DecisionTreeRegressor(random_state=42)
-    grid_search = GridSearchCV(modelo, param_grid, cv=5, scoring="neg_mean_absolute_error", n_jobs=-1)
+    grid_search = GridSearchCV(
+        modelo,
+        param_grid,
+        cv=5,
+        scoring="neg_mean_absolute_error",
+        n_jobs=-1)
     grid_search.fit(X, y)
 
     print("🎯 Mejores hiperparámetros encontrados:")

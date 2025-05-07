@@ -8,7 +8,8 @@ presion_sistolica = ctrl.Antecedent(np.arange(70, 251, 1), 'presion_sistolica')
 colesterol_total = ctrl.Antecedent(np.arange(100, 401, 1), 'colesterol_total')
 indice_masa_corporal = ctrl.Antecedent(np.arange(10, 61, 1), 'indice_masa_corporal')
 edad = ctrl.Antecedent(np.arange(18, 121, 1), 'edad')
-actividad_fisica = ctrl.Antecedent(np.arange(0, 21, 1), 'actividad_fisica') # horas por semana
+actividad_fisica = ctrl.Antecedent(
+    np.arange(0, 21, 1), 'actividad_fisica')  # horas por semana
 cigarrillos_por_dia = ctrl.Antecedent(np.arange(0, 60, 1), 'cigarrillos_por_dia')
 
 
@@ -24,18 +25,20 @@ cigarrillos_por_dia.automf(names=['ninguno', 'moderado', 'alto'])
 
 
 riesgo_cardiovascular['bajo'] = fuzz.trimf(riesgo_cardiovascular.universe, [0, 0, 40])
-riesgo_cardiovascular['medio'] = fuzz.trimf(riesgo_cardiovascular.universe, [30, 50, 70])
-riesgo_cardiovascular['alto'] = fuzz.trimf(riesgo_cardiovascular.universe, [60, 100, 100])
+riesgo_cardiovascular['medio'] = fuzz.trimf(
+    riesgo_cardiovascular.universe, [30, 50, 70])
+riesgo_cardiovascular['alto'] = fuzz.trimf(
+    riesgo_cardiovascular.universe, [60, 100, 100])
 
 
-#valores = {
+# valores = {
 #    'presion_sistolica': ['baja', 'normal', 'alta'],
 #    'colesterol_total': ['bajo', 'medio', 'alto'],
 #    'indice_masa_corporal': ['bajo', 'normal', 'alto'],
 #    'edad': ['joven', 'adulto', 'mayor'],
 #    'actividad_fisica': ['alta', 'media', 'baja'],  # inverso
 #    'cigarrillos_por_dia': ['ninguno', 'moderado', 'alto']
-#}
+# }
 
 valores = {
     'presion_sistolica': ['baja', 'alta'],
@@ -48,9 +51,9 @@ valores = {
 
 
 peso = {
-    'baja': 0, 'bajo': 0, 'joven': 0, 'alta': 0, 'ninguno': 0,
+    'baja': 0, 'bajo': 0, 'joven': 0, 'ninguno': 0,
     'normal': 1, 'medio': 1, 'adulto': 1, 'media': 1, 'moderado': 1,
-    'alta': 2, 'alto': 2, 'mayor': 2, 'baja': 2
+    'alto': 2, 'mayor': 2
 }
 
 
@@ -96,8 +99,13 @@ simulador = ctrl.ControlSystemSimulation(sistema)
 print("Simulador listo")
 
 
-
-def predecir(presion_val, colesterol_val, imc_val, edad_val, actividad_val, cigarros_val):
+def predecir(
+        presion_val,
+        colesterol_val,
+        imc_val,
+        edad_val,
+        actividad_val,
+        cigarros_val):
     try:
         simulador.input['presion_sistolica'] = presion_val
         simulador.input['colesterol_total'] = colesterol_val
