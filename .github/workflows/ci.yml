@@ -23,11 +23,11 @@ jobs:
 
     - name: Set environment variables
       env:
-        DB_HOST: 127.0.0.1
-        DB_PORT: 3306
-        DB_USER: dockerapi
-        DB_PASSWORD: Docker123!
-        DB_NAME: cardiorisk_api
+        DB_HOST: ${{ secrets.DB_HOST }}
+        DB_PORT: ${{ secrets.DB_PORT }}
+        DB_USER: ${{ secrets.DB_USER }}
+        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        DB_NAME: ${{ secrets.DB_NAME }}
       run: echo "Environment variables set for CI"
 
     - name: Set PYTHONPATH
