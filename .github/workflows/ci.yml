@@ -21,6 +21,9 @@ jobs:
         pip install -r requirements.txt
         pip install flake8 pytest
 
+    - name: Set PYTHONPATH
+      run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)/src" >> $GITHUB_ENV
+
     - name: Run flake8 (PEP8 check)
       run: flake8 src/ --exit-zero
 
